@@ -6,6 +6,7 @@ const morgan = require("morgan"); // use morgan middleware for logging request &
 const { error } = require("console");
 const mongoose = require("mongoose");
 const databaseMiddleware = require("./middleware/databaseMiddleware");
+const requestIdMiddleware = require("./middleware/requestIdMiddleware");
 const productRoutes = require("./routes/product-routes");
 const orderRoutes = require("./routes/order-routes");
 const userRoutes = require("./routes/user-routes");
@@ -40,9 +41,9 @@ app.use(
 const port = process.env.PORT || 8000;
 
 // Routes
-app.use("/products", productRoutes);
-app.use("/orders", orderRoutes);
-app.use("/users", userRoutes);
+app.use("/products", requestIdMiddleware, productRoutes);
+app.use("/orders", requestIdMiddleware, orderRoutes);
+app.use("/users", requestIdMiddleware, userRoutes);
 
 // ============================= LISTEN ===============================
 
