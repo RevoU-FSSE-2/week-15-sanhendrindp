@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const checkAuth = require("../middleware/check-auth");
 const checkRole = require("../middleware/role-auth");
+const cors = require("cors");
 const {
   getAllOrder,
   createOrder,
@@ -9,8 +10,20 @@ const {
   deleteOrder,
 } = require("../controllers/order-controller");
 
+// Configure CORS independently
+const ClientYoptions = {
+  origin: "http://127.0.0.1:8000",
+  methods: "GET",
+};
+
 // Route for get all orders
-router.get("/", checkAuth, checkRole(["admin", "user"]), getAllOrder);
+router.get(
+  "/",
+  cors(ClientYoptions),
+  checkAuth,
+  checkRole(["admin", "user"]),
+  getAllOrder
+);
 
 // Route for create an order
 router.post("/", checkAuth, checkRole(["admin", "user"]), createOrder);
