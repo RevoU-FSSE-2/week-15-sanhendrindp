@@ -3,6 +3,7 @@ const router = express.Router();
 const checkAuth = require("../middleware/check-auth");
 const checkRole = require("../middleware/role-auth");
 const multer = require("multer");
+const cors = require("cors");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./uploads/");
@@ -20,8 +21,14 @@ const {
   deleteProduct,
 } = require("../controllers/product-controller");
 
+// Configure CORS independently
+const ClientXoptions = {
+  origin: "http://127.0.0.1:7000",
+  methods: "GET",
+};
+
 // Route for get all products
-router.get("/", getAllProduct);
+router.get("/", cors(ClientXoptions), getAllProduct);
 
 // Route for create a product
 router.post(

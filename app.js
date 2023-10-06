@@ -3,6 +3,7 @@ dotenv.config();
 const express = require("express");
 const app = express();
 const morgan = require("morgan"); // use morgan middleware for logging request & respond
+const cors = require("cors");
 const { error } = require("console");
 const mongoose = require("mongoose");
 const databaseMiddleware = require("./middleware/databaseMiddleware");
@@ -31,6 +32,18 @@ app.use(
     validateRequest: true,
   })
 );
+
+// Configure CORS globally
+// const corsOptions = {
+//   origin: ["http://127.0.0.1:7000", "http://127.0.0.1:8000"],
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+// };
+
+// app.use(cors(corsOptions));
+// app.options("*", (req, res) => {
+//   res.sendStatus(200);
+// });
 
 const port = process.env.PORT;
 
