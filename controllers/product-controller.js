@@ -20,10 +20,10 @@ const getAllProduct = async (req, res, next) => {
           productImage: doc.productImage,
           request: {
             type: "GET",
-            // url: "http://localhost:3000/products/" + doc._id,
-            url:
-              "https://week-11-sanhendrindp-production.up.railway.app/products/" +
-              doc._id,
+            url: "http://localhost:3000/products/" + doc._id,
+            // url:
+            //   "https://week-11-sanhendrindp-production.up.railway.app/products/" +
+            //   doc._id,
           },
         };
       }),
@@ -67,10 +67,10 @@ const createProduct = async (req, res, next) => {
         productImage: result.productImage,
         request: {
           type: "GET",
-          // url: "http://localhost:3000/products/" + result._id,
-          url:
-            "https://week-11-sanhendrindp-production.up.railway.app/products/" +
-            result._id,
+          url: "http://localhost:3000/products/" + result._id,
+          // url:
+          //   "https://week-11-sanhendrindp-production.up.railway.app/products/" +
+          //   result._id,
         },
       },
     });
@@ -125,10 +125,10 @@ const updateProduct = async (req, res, next) => {
       Message: `Product for ID ${id} updated`,
       Product: {
         type: "GET",
-        // url: "http://localhost:3000/products/" + id,
-        url:
-          "https://week-11-sanhendrindp-production.up.railway.app/products/" +
-          id,
+        url: "http://localhost:3000/products/" + id,
+        // url:
+        //   "https://week-11-sanhendrindp-production.up.railway.app/products/" +
+        //   id,
       },
     });
   } catch (err) {
