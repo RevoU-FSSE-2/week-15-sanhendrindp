@@ -8,6 +8,7 @@ const { error } = require("console");
 const mongoose = require("mongoose");
 const databaseMiddleware = require("./middleware/databaseMiddleware");
 const requestIdMiddleware = require("./middleware/requestIdMiddleware");
+const helmet = require("helmet");
 const productRoutes = require("./routes/product-routes");
 const orderRoutes = require("./routes/order-routes");
 const userRoutes = require("./routes/user-routes");
@@ -24,6 +25,7 @@ const swaggerDocument = yaml.parse(file);
 app.use(express.json());
 app.use(databaseMiddleware);
 app.use(morgan("dev"));
+app.use(helmet());
 app.use("/uploads", express.static("uploads"));
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(
